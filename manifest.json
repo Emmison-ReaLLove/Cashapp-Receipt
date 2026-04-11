@@ -1,6 +1,6 @@
 {
-    "name": "Receipt App",
-    "short_name": "Receipt",
+    "name": "Cashapp App",
+    "short_name":"Cashapp",
     "start_url": "/",
     "scope": "/",
     "display": "standalone",
