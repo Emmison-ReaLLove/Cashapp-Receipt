@@ -206,7 +206,7 @@ html, body {
     <!-- Top info -->
     <div>
         <img id="profile" class="profile" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
-        <div id="name" class="name">De_Guzzman</div>
+        <div id="namE" class="name">De_Guzzman</div>
         <div id="tag" class="subtitle">Payment to $De_Guzzman99</div>
     </div>
 
@@ -264,8 +264,8 @@ html, body {
     <div class="popup-card">
         <input id="pName" placeholder="Name">
         <input id="pTag" placeholder="Payment tag">
-        <input id="pMainAmount" placeholder="Amount">
-        <input id="pNavAmount" placeholder="Balance">
+        <input id="pMainAmount" placeholder="Amount transfering">
+        <input id="pNavAmount" placeholder="Current Balance">
         <input type="file" id="pImage" accept="image/*">
         <button onclick="applyData()">Done</button>
     </div>
@@ -285,7 +285,7 @@ function getUSATime(){
 }
 
 function applyData(){
-    if(pName.value) name.textContent = pName.value;
+    if(pName.value) namE.textContent = pName.value;
     if(pTag.value) tag.textContent = "Payment to " + pTag.value;
 
     if(pMainAmount.value)
