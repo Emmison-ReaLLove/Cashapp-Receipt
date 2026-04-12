@@ -319,6 +319,26 @@ setInterval(()=>{
     time.textContent = getUSATime();
 },1000);
 </script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js").then(reg => {
 
+    // 🔥 Detect new update
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+
+      newWorker.onstatechange = () => {
+        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+          
+          // 🔥 Auto reload when update is ready
+          window.location.reload();
+
+        }
+      };
+    };
+
+  });
+}
+</script>
 </body>
 </html>
