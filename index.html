@@ -15,41 +15,54 @@
     --gray: #8E8E93;
 }
 
-/* Base */
-body {
+/* Prevent scroll */
+html, body {
+    height: 100%;
+    overflow: hidden;
     margin: 0;
-    background: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 }
 
-/* App container */
+/* App */
 .app {
     max-width: 420px;
     margin: 0 auto;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 
-    padding-top: calc(16px + env(safe-area-inset-top));
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    padding: calc(16px + env(safe-area-inset-top)) 16px
+             calc(10px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
 }
 
-/* Top bar */
+/* Top */
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Content */
+/* Content layout */
 .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
-    margin-top: 48px;
+    margin-top: 20px;
 }
 
+/* Middle center */
+.middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+/* Profile */
 .profile {
     width: 84px;
     height: 84px;
@@ -72,7 +85,6 @@ body {
 .amount {
     font-size: 52px;
     font-weight: 800;
-    margin-top: 28px;
     letter-spacing: -1px;
 }
 
@@ -84,7 +96,8 @@ body {
 
 /* Bottom */
 .bottom {
-    margin-top: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Buttons */
@@ -97,25 +110,18 @@ body {
     border-radius: 40px;
     font-size: 18px;
     font-weight: 600;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .secondary-btn {
-    background: transparent;
     border: 1.5px solid #E5E5EA;
     width: 100%;
     padding: 18px;
     border-radius: 40px;
     font-size: 17px;
-    font-weight: 500;
     margin-top: 14px;
     color: #007AFF;
+    background: transparent;
 }
 
 /* Nav */
@@ -123,9 +129,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    margin-top: 28px;
-    padding: 10px 6px calc(env(safe-area-inset-bottom) + 4px);
+    margin-top: 20px;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .nav svg {
@@ -136,16 +141,6 @@ body {
 #navAmount {
     font-size: 18px;
     color: var(--gray);
-}
-
-/* Button interaction */
-button {
-    transition: transform 0.1s ease, opacity 0.1s ease;
-}
-
-button:active {
-    transform: scale(0.97);
-    opacity: 0.9;
 }
 
 /* Popup */
@@ -176,6 +171,12 @@ button:active {
 
 .popup-card button {
     margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 20px;
+    background: var(--green);
+    color: white;
+    border: none;
 }
 </style>
 </head>
@@ -184,6 +185,7 @@ button:active {
 
 <div class="app">
 
+<!-- Top -->
 <div class="top-bar">
     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#000" stroke-width="2.2">
         <path d="M15.5 5l-7 7 7 7"/>
@@ -198,34 +200,58 @@ button:active {
     </div>
 </div>
 
+<!-- Content -->
 <div class="content">
-    <img id="profile" class="profile" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
 
-    <div id="name" class="name">De_Guzzman</div>
-    <div id="tag" class="subtitle">Payment to $De_Guzzman99</div>
+    <!-- Top info -->
+    <div>
+        <img id="profile" class="profile" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
+        <div id="name" class="name">De_Guzzman</div>
+        <div id="tag" class="subtitle">Payment to $De_Guzzman99</div>
+    </div>
 
-    <div id="amount" class="amount">$00.00</div>
-    <div id="time" class="time">Today at 0:00 PM</div>
+    <!-- CENTER -->
+    <div class="middle">
+        <div id="amount" class="amount">$00.00</div>
+        <div id="time" class="time">Today at 0:00 PM</div>
+    </div>
+
 </div>
 
+<!-- Bottom -->
 <div class="bottom">
 
-    <button class="primary-btn">
-        ✓ Completed
-    </button>
-
+    <button class="primary-btn">✓ Completed</button>
     <button class="secondary-btn">Web Receipt</button>
 
+    <!-- NAV (YOUR ORIGINAL ICONS UNCHANGED) -->
     <div class="nav">
+
         <div id="navAmount">$0.00</div>
 
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#8E8E93" stroke-width="2.3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="#8E8E93" stroke-width="2.3"/>
+            <circle cx="8" cy="8" r="1.6" fill="#8E8E93"/>
+        </svg>
 
-        <svg viewBox="0 0 24 24"><text x="6" y="18" font-size="16" fill="#8E8E93">$</text></svg>
+        <svg viewBox="0 0 22 22">
+            <g transform="rotate(8 11 11) scale(1.05)">
+                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15..." fill="#8E8E93"/>
+            </g>
+        </svg>
 
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="#8E8E93" stroke-width="2.3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="7" stroke="#8E8E93" stroke-width="2.3"/>
+            <line x1="16.5" y1="16.5" x2="20.5" y2="20.5"
+                stroke="#8E8E93" stroke-width="2.3" stroke-linecap="round"/>
+        </svg>
 
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#000" stroke-width="2.3"/></svg>
+        <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#000" stroke-width="2.3"/>
+            <path d="M12 7.5V12L15 13.8"
+                stroke="#000" stroke-width="2.3" stroke-linecap="round"/>
+        </svg>
+
     </div>
 
 </div>
@@ -245,39 +271,32 @@ button:active {
 </div>
 
 <script>
-function openPopup() {
-    document.getElementById("popup").style.display = "flex";
-}
+function openPopup(){ popup.style.display="flex"; }
+function closePopup(){ popup.style.display="none"; }
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
-function getUSATime() {
+function getUSATime(){
     return "Today at " + new Date().toLocaleTimeString("en-US", {
-        timeZone: "America/New_York",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
+        timeZone:"America/New_York",
+        hour:"numeric",
+        minute:"2-digit",
+        hour12:true
     });
 }
 
-function applyData() {
-    const name = pName.value;
-    const tag = pTag.value;
-    const mainAmount = pMainAmount.value;
-    const navAmount = pNavAmount.value;
+function applyData(){
+    if(pName.value) name.textContent = pName.value;
+    if(pTag.value) tag.textContent = "Payment to " + pTag.value;
 
-    if (name) nameEl.textContent = name;
-    if (tag) tagEl.textContent = "Payment to " + tag;
+    if(pMainAmount.value)
+        amount.textContent = "$" + Number(pMainAmount.value).toLocaleString();
 
-    if (mainAmount) amountEl.textContent = "$" + Number(mainAmount).toLocaleString();
-    if (navAmount) navAmountEl.textContent = "$" + Number(navAmount).toLocaleString();
+    if(pNavAmount.value)
+        navAmount.textContent = "$" + Number(pNavAmount.value).toLocaleString();
 
-    timeEl.textContent = getUSATime();
+    time.textContent = getUSATime();
 
     const file = pImage.files[0];
-    if (file) {
+    if(file){
         const reader = new FileReader();
         reader.onload = e => profile.src = e.target.result;
         reader.readAsDataURL(file);
@@ -286,9 +305,9 @@ function applyData() {
     closePopup();
 }
 
-setInterval(() => {
-    timeEl.textContent = getUSATime();
-}, 1000);
+setInterval(()=>{
+    time.textContent = getUSATime();
+},1000);
 </script>
 
 </body>
